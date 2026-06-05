@@ -2,17 +2,16 @@
 
 namespace Database\Factories;
 
+use App\Models\Categoria;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ObjetivoFactory extends Factory
 {
     public function definition()
     {
-        $categorias = ['marketing', 'publicidad', 'diseno', 'analisis', 'general'];
-
         return [
+            'id_categoria' => Categoria::inRandomOrder()->first()->id_categoria,
             'descripcion' => $this->faker->sentence(4),
-            'categoria'   => $this->faker->randomElement($categorias),
         ];
     }
 }

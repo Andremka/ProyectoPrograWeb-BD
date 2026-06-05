@@ -9,13 +9,18 @@ class Objetivo extends Model
 {
     use HasFactory;
 
-    protected $table      = 'objetivos';
+    protected $table = 'objetivos';
     protected $primaryKey = 'id_objetivo';
 
     protected $fillable = [
+        'id_categoria',
         'descripcion',
-        'categoria',
     ];
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'id_categoria', 'id_categoria');
+    }
 
     public function solicitudes()
     {

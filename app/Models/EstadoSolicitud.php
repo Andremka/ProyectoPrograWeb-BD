@@ -9,7 +9,7 @@ class EstadoSolicitud extends Model
 {
     use HasFactory;
 
-    protected $table      = 'estados_solicitudes';
+    protected $table = 'estados_solicitudes';
     protected $primaryKey = 'id_estado';
 
     public $timestamps = false;

@@ -9,7 +9,7 @@ class Solicitud extends Model
 {
     use HasFactory;
 
-    protected $table      = 'solicitudes';
+    protected $table = 'solicitudes';
     protected $primaryKey = 'id_solicitud';
 
     protected $fillable = [

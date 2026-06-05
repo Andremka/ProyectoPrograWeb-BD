@@ -10,9 +10,15 @@ return new class extends Migration
     {
         Schema::create('objetivos', function (Blueprint $table) {
             $table->id('id_objetivo');
+            $table->unsignedBigInteger('id_categoria');
             $table->string('descripcion', 255);
-            $table->string('categoria', 100);
             $table->timestamps();
+
+            $table->foreign('id_categoria')
+                  ->references('id_categoria')
+                  ->on('categorias')
+                  ->onDelete('restrict')
+                  ->onUpdate('cascade');
         });
     }
 
