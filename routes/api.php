@@ -16,24 +16,24 @@ Route::prefix('auth')->group(function () {
     Route::get('/usuario', [AuthController::class, 'user'])->middleware('auth:sanctum');
 });
 
-// Categorias (publico: listar y ver)
+// Categorias 
 Route::get('categorias',       [CategoriaController::class, 'index']);
 Route::get('categorias/{id}',  [CategoriaController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('categorias',          [CategoriaController::class, 'store']);
-    Route::put('categorias/{id}',      [CategoriaController::class, 'update']);
-    Route::delete('categorias/{id}',   [CategoriaController::class, 'destroy']);
+    Route::post('categorias', [CategoriaController::class, 'store']);
+    Route::put('categorias/{id}', [CategoriaController::class, 'update']);
+    Route::delete('categorias/{id}', [CategoriaController::class, 'destroy']);
 });
 
-// Objetivos (publico: listar y ver)
-Route::get('objetivos',       [ObjetivoController::class, 'index']);
-Route::get('objetivos/{id}',  [ObjetivoController::class, 'show']);
+// Objetivos 
+Route::get('objetivos', [ObjetivoController::class, 'index']);
+Route::get('objetivos/{id}', [ObjetivoController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('objetivos',         [ObjetivoController::class, 'store']);
-    Route::put('objetivos/{id}',     [ObjetivoController::class, 'update']);
-    Route::delete('objetivos/{id}',  [ObjetivoController::class, 'destroy']);
+    Route::post('objetivos', [ObjetivoController::class, 'store']);
+    Route::put('objetivos/{id}', [ObjetivoController::class, 'update']);
+    Route::delete('objetivos/{id}', [ObjetivoController::class, 'destroy']);
 });
 
 // Solicitudes
@@ -45,7 +45,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/solicitudes/{solicitud}/estado', [SolicitudController::class, 'cambiarEstado']);
 });
 
-// Contacto (publico: enviar mensaje)
+// Contacto 
 Route::post('/contacto', [ContactoController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function () {
