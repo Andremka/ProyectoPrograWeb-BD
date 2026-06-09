@@ -28,11 +28,11 @@ class DatabaseSeeder extends Seeder
 
         // Categorias predefinidas
         $categorias = [
-            ['nombre' => 'Marketing', 'descripcion' => 'Estrategias y acciones de marketing digital'],
-            ['nombre' => 'Publicidad', 'descripcion' => 'Campanas publicitarias y medios pagados'],
-            ['nombre' => 'Diseno', 'descripcion' => 'Diseno grafico, branding e identidad visual'],
-            ['nombre' => 'Analisis', 'descripcion' => 'Analisis de datos y reportes de resultados'],
-            ['nombre' => 'General', 'descripcion' => 'Consultas generales sobre la empresa'],
+            ['nombre' => 'Marketing'],
+            ['nombre' => 'Publicidad'],
+            ['nombre' => 'Diseno'],
+            ['nombre' => 'Analisis'],
+            ['nombre' => 'General'],
         ];
 
         foreach ($categorias as $cat) {
