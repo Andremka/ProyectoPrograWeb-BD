@@ -21,6 +21,7 @@ class User extends Authenticatable
         'materno',
         'email',
         'password',
+        'rol',
     ];
 
     protected $hidden = [
@@ -30,10 +31,16 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'rol' => 'integer',
     ];
 
     public function solicitudes()
     {
         return $this->hasMany(Solicitud::class, 'id_usuario', 'id_usuario');
+    }
+
+    public function esAdmin()
+    {
+        return $this->rol === 1;
     }
 }

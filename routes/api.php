@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\ReporteController;
 
 // Rutas de autenticacion
 Route::prefix('auth')->group(function () {
@@ -36,18 +37,21 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 // Solicitudes
-Route::post('/solicitudes', [SolicitudController::class, 'store']); // publico
+Route::post('/solicitudes', [SolicitudController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/solicitudes', [SolicitudController::class, 'index']);
     Route::get('/solicitudes/{solicitud}', [SolicitudController::class, 'show']);
     Route::post('/solicitudes/{solicitud}/estado', [SolicitudController::class, 'cambiarEstado']);
+    Route::get('/solicitudes/usuario/{id_usuario}', [SolicitudController::class, 'porUsuario']);
+    Route::get('/solicitudes/usuario/{id_usuario}/mensajes', [SolicitudController::class, 'mensajesPorUsuario']);
 });
 
+// Reportes (solo admin)
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/solicitudes/usuario/{id_usuario}', 
-        [SolicitudController::class, 'porUsuario']);
+    Route::get('/reportes/solicitudes-por-usuario', [ReporteController::class, 'solicitudesPorUsuario']);
+    Route::get('/reportes/solicitudes-por-categoria', [ReporteController::class, 'solicitudesPorCategoria']);
+    Route::get('/reportes/estados-por-solicitud', [ReporteController::class, 'estadosPorSolicitud']);
+    Route::get('/reportes/usuarios-mas-solicitudes', [ReporteController::class, 'usuariosConMasSolicitudes']);
+    Route::get('/reportes/solicitudes-por-mes', [ReporteController::class, 'solicitudesPorMes']);
 });
-
-Route::get('/solicitudes/usuario/{id_usuario}/mensajes',
-    [SolicitudController::class, 'mensajesPorUsuario']);

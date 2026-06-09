@@ -25,6 +25,7 @@ class AuthController extends Controller
             'materno'  => $request->materno,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
+            'rol'      => 0,
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -52,13 +53,14 @@ class AuthController extends Controller
         return response()->json([
             'user'  => $user,
             'token' => $token,
+            'rol'   => $user->rol,
         ]);
     }
 
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
-        return response()->json(['message' => 'Sesión cerrada correctamente']);
+        return response()->json(['message' => 'Sesión cerrada correctamente...']);
     }
 
     public function user(Request $request)

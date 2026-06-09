@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             'materno'  => null,
             'email'    => 'admin@rocket.com',
             'password' => Hash::make('admin123'),
+            'rol'      => 1, 
         ]);
 
         // usuarios adicionales 
