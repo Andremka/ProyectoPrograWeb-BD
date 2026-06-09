@@ -10,10 +10,16 @@ return new class extends Migration
     {
         Schema::create('estados_solicitudes', function (Blueprint $table) {
             $table->id('id_estado');
-            $table->foreignId('id_solicitud')->constrained('solicitudes', 'id_solicitud')->onDelete('cascade')->onUpdate('cascade');
-            $table->enum('estado', ['pendiente', 'activa', 'cerrada'])->default('pendiente');
+            $table->unsignedBigInteger('id_solicitud');
+            $table->string('estado', 20)->default('pendiente');
             $table->timestamp('fecha_cambio')->useCurrent();
             $table->text('observacion')->nullable();
+
+            $table->foreign('id_solicitud')
+                  ->references('id_solicitud')
+                  ->on('solicitudes')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 

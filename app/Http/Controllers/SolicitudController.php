@@ -42,22 +42,22 @@ class SolicitudController extends Controller
     }
 
     public function cambiarEstado(Request $request, $id)
-    {
-        $solicitud = Solicitud::findOrFail($id);
+{
+    $solicitud = Solicitud::findOrFail($id);
 
-        $request->validate([
-            'estado' => 'required|in:pendiente,activa,cerrada',
-            'observacion' => 'nullable|string',
-        ]);
+    $request->validate([
+        'estado'      => 'required|string|in:pendiente,activa,cerrada',
+        'observacion' => 'nullable|string',
+    ]);
 
-        EstadoSolicitud::create([
-            'id_solicitud' => $solicitud->id_solicitud,
-            'estado' => $request->estado,
-            'observacion'  => $request->observacion,
-        ]);
+    EstadoSolicitud::create([
+        'id_solicitud' => $solicitud->id_solicitud,
+        'estado'       => $request->estado,
+        'observacion'  => $request->observacion,
+    ]);
 
-        return response()->json($solicitud->load('estados'));
-    }
+    return response()->json($solicitud->load('estados'));
+}
 
     public function porUsuario($id_usuario)
     {
