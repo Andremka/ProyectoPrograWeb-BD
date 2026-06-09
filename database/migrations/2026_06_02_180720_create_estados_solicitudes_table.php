@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('estados_solicitudes', function (Blueprint $table) {
             $table->id('id_estado');
             $table->unsignedBigInteger('id_solicitud');
-            $table->string('estado', 20)->default('pendiente');
+            $table->string('estado', 20);
             $table->timestamp('fecha_cambio')->useCurrent();
             $table->text('observacion')->nullable();
 
