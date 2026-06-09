@@ -6,7 +6,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\SolicitudController;
-use App\Http\Controllers\ContactoController;
 
 // Rutas de autenticacion
 Route::prefix('auth')->group(function () {
@@ -45,9 +44,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/solicitudes/{solicitud}/estado', [SolicitudController::class, 'cambiarEstado']);
 });
 
-// Contacto 
-Route::post('/contacto', [ContactoController::class, 'store']);
-
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/contacto', [ContactoController::class, 'index']);
+    Route::get('/solicitudes/usuario/{id_usuario}', 
+        [SolicitudController::class, 'porUsuario']);
 });
+
+Route::get('/solicitudes/usuario/{id_usuario}/mensajes',
+    [SolicitudController::class, 'mensajesPorUsuario']);

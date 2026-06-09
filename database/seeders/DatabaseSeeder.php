@@ -7,7 +7,6 @@ use App\Models\Categoria;
 use App\Models\Objetivo;
 use App\Models\Solicitud;
 use App\Models\EstadoSolicitud;
-use App\Models\Contacto;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -64,7 +63,5 @@ class DatabaseSeeder extends Seeder
         // estados de solicitudes 
         EstadoSolicitud::factory(10)->create();
 
-        // contactos 
-        Contacto::factory(10)->create();
     }
 }
