@@ -67,4 +67,31 @@ class AuthController extends Controller
     {
         return response()->json($request->user());
     }
+
+    public function actualizarCredenciales(Request $request)
+    {
+        $user = $request->user();
+
+        if (!$user->esAdmin()) {
+            return response()->json(['message' => 'No autorizado'], 403);
+        }
+
+        $request->validate([
+            'email'        => 'sometimes|email|unique:usuarios,email,' . $user->id_usuario . ',id_usuario',
+            'password'     => 'sometimes|min:6',
+            'nombre'       => 'sometimes|string|max:100',
+            'paterno'      => 'sometimes|string|max:100',
+        ]);
+
+        if ($request->has('password')) {
+            $request->merge(['password' => Hash::make($request->password)]);
+        }
+
+        $user->update($request->only('email', 'password', 'nombre', 'paterno'));
+
+        return response()->json([
+            'message' => 'Credenciales actualizadas correctamente',
+            'user'    => $user
+        ]);
+    }
 }

@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\DB;
 
 class ReporteController extends Controller
 {
+    private function verificarAdmin()
+    {
+        if (!auth()->user()->esAdmin()) {
+            abort(response()->json(['message' => 'No autorizado, se requiere rol de administrador'], 403));
+        }
+    }
+    
     public function solicitudesPorUsuario()
     {
         $resultado = DB::select('CALL reporte_solicitudes_por_usuario()');

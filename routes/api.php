@@ -14,6 +14,7 @@ Route::prefix('auth')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/salir', [AuthController::class, 'logout'])->middleware('auth:sanctum');
     Route::get('/usuario', [AuthController::class, 'user'])->middleware('auth:sanctum');
+    Route::put('/actualizar-credenciales', [AuthController::class, 'actualizarCredenciales'])->middleware('auth:sanctum');
 });
 
 // Categorias 
